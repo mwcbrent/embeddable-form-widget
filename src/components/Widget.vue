@@ -17,50 +17,26 @@
       return {
 
         model: {
-          id: 1,
-          name: 'John Doe',
-          password: 'J0hnD03!x4',
-          skills: ['Javascript', 'VueJS'],
-          email: 'john.doe@gmail.com',
-          status: true
+          firstName: null,
+          lastName: null,
+          email: null
         },
 
         schema: {
           fields: [{
             type: 'input',
             inputType: 'text',
-            label: 'ID',
-            model: 'id',
-            readonly: true,
-            featured: false,
-            disabled: true
+            label: 'First Name',
+            model: 'firstName',
+            required: true,
+            validator: VueFormGenerator.validators.string
           }, {
             type: 'input',
             inputType: 'text',
-            label: 'Name',
-            model: 'name',
-            readonly: false,
-            featured: true,
+            label: 'Last Name',
+            model: 'lastName',
             required: true,
-            disabled: false,
-            placeholder: 'Name',
             validator: VueFormGenerator.validators.string
-          }, {
-            type: 'input',
-            inputType: 'password',
-            label: 'Password',
-            model: 'password',
-            min: 6,
-            required: true,
-            hint: 'Minimum 6 characters',
-            validator: VueFormGenerator.validators.string
-          }, {
-            type: 'input',
-            inputType: 'number',
-            label: 'Age',
-            model: 'age',
-            min: 18,
-            validator: VueFormGenerator.validators.number
           }, {
             type: 'input',
             inputType: 'email',
@@ -69,29 +45,12 @@
             placeholder: 'Email',
             validator: VueFormGenerator.validators.email
           }, {
-            type: 'checklist',
-            label: 'Skills',
-            model: 'skills',
-            multi: true,
-            required: true,
-            multiSelect: true,
-            values: ['HTML5', 'Javascript', 'CSS3', 'CoffeeScript', 'AngularJS', 'ReactJS', 'VueJS']
-          }, {
-            type: 'switch',
-            label: 'Status',
-            model: 'status',
-            multi: true,
-            readonly: false,
-            featured: false,
-            disabled: false,
-            default: true,
-            textOn: 'Active',
-            textOff: 'Inactive'
+            type: 'submit'
           }]
         },
 
         formOptions: {
-          validateAfterLoad: true,
+          validateAfterLoad: false,
           validateAfterChanged: true
         }
       }
