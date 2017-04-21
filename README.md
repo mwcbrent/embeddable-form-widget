@@ -7,9 +7,13 @@
 ``` bash
 # install dependencies
 npm install
+npm install -g json-server
 
 # serve with hot reload at localhost:8080
 npm run dev
+
+# start node mock server on localhost:3000
+json-server --watch db.json
 
 # build for production with minification
 npm run build

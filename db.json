@@ -1,0 +1,29 @@
+{
+  "forms": [{
+    "id": 1,
+    "title": "Good Form",
+    "schema": {
+      "fields": [{
+        "type": "input",
+        "inputType": "text",
+        "label": "First Name",
+        "model": "firstName",
+        "required": true
+      },{
+        "type": "input",
+        "inputType": "text",
+        "label": "Last Name",
+        "model": "lastName",
+        "required": true
+      },{
+        "type": "input",
+        "inputType": "email",
+        "label": "E-mail",
+        "model": "email",
+        "placeholder": "Email"
+      },{
+        "type": "submit"
+      }]
+    }
+  }]
+}

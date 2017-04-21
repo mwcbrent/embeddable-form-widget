@@ -7,5 +7,21 @@
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script type="text/javascript" id="form-embedder-5b8cf3a4-b0f0-13e9-3737-d5a159268ae6">
+      (function() {
+        function async_load(){
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = '/app.js';
+          var embedder = document.getElementById('form-embedder-5b8cf3a4-b0f0-13e9-3737-d5a159268ae6');
+          embedder.parentNode.insertBefore(s, embedder);
+        }
+        if (window.attachEvent)
+          window.attachEvent('onload', async_load);
+        else
+          window.addEventListener('load', async_load, false);
+      })();
+    </script>
   </body>
 </html>

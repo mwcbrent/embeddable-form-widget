@@ -13,6 +13,8 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
+    library: ['FormWidget'],
+    libraryTarget: 'umd',
     filename: '[name].js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
