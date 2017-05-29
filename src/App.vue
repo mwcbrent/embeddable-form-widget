@@ -1,18 +1,42 @@
 <template>
-  <div id="app">
-    <widget></widget>
+  <div id="app" v-if="loaded">
+    <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
   </div>
 </template>
 
 <script>
-import Widget from './components/Widget'
+  import Vue from 'vue'
+  import VueFormGenerator from 'vue-form-generator/dist/vfg-core.js'
+  import 'vue-form-generator/dist/vfg-core.css'
 
-export default {
-  name: 'app',
-  components: {
-    Widget
+  Vue.use(VueFormGenerator)
+
+  export default {
+    name: 'app',
+
+    data: function () {
+      return {
+        loaded: false,
+        model: null,
+        schema: null,
+        formOptions: null
+      }
+    },
+
+    created: function () {
+      return fetch('http://localhost:3000/forms')
+        .then((response) => response.json())
+        .then((json) => {
+          this.loaded = true
+          this.model = json.model
+          this.schema = json.schema
+          this.formOptions = json.formOptions
+        })
+        .catch((ex) => {
+          console.log('parsing failed', ex)
+        })
+    }
   }
-}
 </script>
 
 <style>

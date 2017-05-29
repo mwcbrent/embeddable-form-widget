@@ -1,7 +1,10 @@
 {
-  "forms": [{
-    "id": 1,
-    "title": "Good Form",
+  "forms": {
+    "model": {
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
     "schema": {
       "fields": [{
         "type": "input",
@@ -25,5 +28,5 @@
         "type": "submit"
       }]
     }
-  }]
+  }
 }
