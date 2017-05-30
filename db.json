@@ -3,30 +3,43 @@
     "model": {
       "firstName": null,
       "lastName": null,
-      "email": null
+      "email": null,
+      "apiKey": "5b8cf3a4-b0f0-13e9-3737-d5a159268ae6"
     },
     "schema": {
-      "fields": [{
-        "type": "input",
-        "inputType": "text",
-        "label": "First Name",
-        "model": "firstName",
-        "required": true
-      },{
-        "type": "input",
-        "inputType": "text",
-        "label": "Last Name",
-        "model": "lastName",
-        "required": true
-      },{
-        "type": "input",
-        "inputType": "email",
-        "label": "E-mail",
-        "model": "email",
-        "placeholder": "Email"
-      },{
-        "type": "submit"
-      }]
+      "fields": [
+        {
+          "type": "input",
+          "inputType": "text",
+          "label": "First Name",
+          "model": "firstName",
+          "required": true
+        },
+        {
+          "type": "input",
+          "inputType": "text",
+          "label": "Last Name",
+          "model": "lastName",
+          "required": true
+        },
+        {
+          "type": "input",
+          "inputType": "email",
+          "label": "E-mail",
+          "model": "email",
+          "placeholder": "Email"
+        },
+        {
+          "type": "input",
+          "inputType": "hidden",
+          "model": "apiKey"
+        },
+        {
+          "type": "submit"
+        }
+      ]
     }
+  },
+  "form": {
   }
 }
