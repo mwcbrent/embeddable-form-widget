@@ -6,8 +6,6 @@
 </template>
 
 <script>
-  /* eslint no-eval: 0 */
-
   import Vue from 'vue'
   import VueFormGenerator from 'vue-form-generator/dist/vfg-core.js'
   import 'vue-form-generator/dist/vfg-core.css'
@@ -19,12 +17,12 @@
 
     data: function () {
       return {
-        loaded: false,
-        submitted: false,
         model: null,
         schema: null,
         formOptions: null,
-        apiKey: null
+        apiKey: null,
+        loaded: false,
+        submitted: false
       }
     },
 
@@ -47,9 +45,9 @@
               field.onSubmit = this.submit
             }
 
-            // map validators to local validator list
+            // map validators to real functions
             if (field.validator) {
-
+              field.validator = VueFormGenerator.validators[field.validator]
             }
 
             return field

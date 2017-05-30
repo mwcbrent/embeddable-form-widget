@@ -13,21 +13,25 @@
           "inputType": "text",
           "label": "First Name",
           "model": "firstName",
-          "required": true
+          "required": true,
+          "validator": "string"
         },
         {
           "type": "input",
           "inputType": "text",
           "label": "Last Name",
           "model": "lastName",
-          "required": true
+          "required": true,
+          "validator": "string"
         },
         {
           "type": "input",
           "inputType": "email",
           "label": "E-mail",
           "model": "email",
-          "placeholder": "Email"
+          "placeholder": "Email",
+          "required": true,
+          "validator": "email"
         },
         {
           "type": "input",
@@ -35,11 +39,19 @@
           "model": "apiKey"
         },
         {
-          "type": "submit"
+          "type": "submit",
+          "validateBeforeSubmit": true
         }
       ]
+    },
+    "formOptions": {
+      "validateAfterChanged": false
     }
   },
   "form": {
+    "firstName": "",
+    "lastName": "",
+    "email": "",
+    "apiKey": "5b8cf3a4-b0f0-13e9-3737-d5a159268ae6"
   }
 }
