@@ -1,7 +1,7 @@
 <template>
   <div id="app" v-if="loaded">
     <div v-if="submitted">Successfully submitted!</div>
-    <vue-form-generator v-if="!submitted" :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
+    <vue-form-generator v-else="!submitted" :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
   </div>
 </template>
 
@@ -27,6 +27,7 @@
     },
 
     created: function () {
+
       const options = {}
 
       // use auth header if this option is set
@@ -36,9 +37,10 @@
         }
       }
 
-      return fetch('http://localhost:3000/forms', options)
+      fetch('http://localhost:3000/forms', options)
         .then((response) => response.json())
         .then((json) => {
+
           json.schema.fields.map((field) => {
             // map submit button to local function
             if (field.type === 'submit') {
@@ -67,7 +69,10 @@
     },
 
     methods: {
+
       submit (data) {
+
+        // base request options
         const options = {
           headers: {
             'content-type': 'application/json'
@@ -82,8 +87,9 @@
         }
 
         // post that bitch
-        return fetch('http://localhost:3000/form', options)
+        fetch('http://localhost:3000/form', options)
           .then((response) => {
+
             if (response.status === 201) {
               this.submitted = true
             }
