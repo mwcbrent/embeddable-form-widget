@@ -1,21 +1,33 @@
 <template>
-  <div id="jpjd-formwidget--app" v-if="loaded">
-    <div v-if="submitted">Successfully submitted!</div>
-    <vue-form-generator v-else="!submitted" :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
+  <div id="jpjd-formwidget--app">
+    <!--  display spinner if loading schema or submitting form -->
+    <spinner v-if="loading" />
+
+    <!--  form loading, but not submitted -->
+    <vue-form-generator v-else-if="!loading && !submitted" :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
+
+    <!--  form submitted successfully -->
+    <div v-else-if="submitted">
+      Thanks!
+    </div>
   </div>
 </template>
 
 <script>
   import Vue from 'vue'
+  import Spinner from './components/Spinner';
   import VueFormGenerator from 'vue-form-generator/dist/vfg-core.js'
   import 'vue-form-generator/dist/vfg-core.css'
-
-  Vue.use(VueFormGenerator)
 
   const widgetName = 'formWidget'
 
   export default {
     name: 'app',
+
+    components: {
+      Spinner,
+      'vue-form-generator': VueFormGenerator.component
+    },
 
     data() {
 
@@ -24,7 +36,7 @@
         model: {},
         schema: null,
         formOptions: null,
-        loaded: false,
+        loading: true,
         submitted: false
       }
     },
@@ -52,6 +64,7 @@
        * @return {[type]} [description]
        */
       schemaUrl() {
+
         const url = this.config.schemaUrl
 
         if (!this.config.useAuthHeader) {
@@ -91,14 +104,15 @@
             // assign the schema and form options
             this.schema = this.processSchema(json.schema)
             this.formOptions = json.formOptions
-
-            // indicate that the schema has been loaded
-            this.loaded = true
           })
           .catch((err) => {
             // TODO: add error handling
             console.log("[fetch] error")
             console.log(err)
+          })
+          .then(() => {
+            // disable loading spinner
+            this.loading = false;
           })
       },
 
@@ -109,6 +123,7 @@
        * @return {[type]}        [description]
        */
       processSchema(schema) {
+
         // map validators to real functions
         schema.fields.map((field) => {
 
@@ -139,6 +154,9 @@
        */
       submit (data) {
 
+        // trigger loading spinner
+        this.loading = true;
+
         // base request options
         const options = {
           headers: {
@@ -160,11 +178,28 @@
             if (response.status === 201) {
               this.submitted = true
             }
+
           })
           .catch((err) => {
             // TODO: add error handling
+          })
+          .then(() => {
+            // disable loading spinner
+            this.loading = false;
           })
       }
     }
   }
 </script>
+
+<style>
+  #jpjd-formwidget--app {
+    display: flex;
+    justify-content: center;
+    min-height: 300px;
+  }
+
+  fieldset {
+    border: 0;
+  }
+</style>
