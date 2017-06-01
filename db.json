@@ -3,12 +3,6 @@
     "config": {
       "postUrl": "http://localhost:3000/form"
     },
-    "model": {
-      "firstName": null,
-      "lastName": null,
-      "email": null,
-      "apiKey": "5b8cf3a4-b0f0-13e9-3737-d5a159268ae6"
-    },
     "schema": {
       "fields": [
         {

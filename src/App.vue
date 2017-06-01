@@ -12,7 +12,7 @@
 
   Vue.use(VueFormGenerator)
 
-  const widgetName = 'formWidget';
+  const widgetName = 'formWidget'
 
   export default {
     name: 'app',
@@ -21,7 +21,7 @@
 
       return {
         config: null,
-        model: null,
+        model: {},
         schema: null,
         formOptions: null,
         loaded: false,
@@ -33,10 +33,15 @@
     created() {
 
       // get window config
-      this.config = window[widgetName];
+      this.config = window[widgetName]
+
+      // set api key on model if not using auth header
+      if (!this.config.useAuthHeader) {
+        this.model.apiKey = this.config.apiKey
+      }
 
       // fetch the form schema
-      this.fetchSchema();
+      this.fetchSchema()
     },
 
 
@@ -47,7 +52,7 @@
        * @return {[type]} [description]
        */
       schemaUrl() {
-        const url = this.config.schemaUrl;
+        const url = this.config.schemaUrl
 
         if (!this.config.useAuthHeader) {
           return `${url}?api_key=${this.config.apiKey}`
@@ -83,8 +88,7 @@
             // set config
             this.config.postUrl = json.config.postUrl
 
-            // assign the schema and model
-            this.model = json.model
+            // assign the schema and form options
             this.schema = this.processSchema(json.schema)
             this.formOptions = json.formOptions
 
@@ -123,7 +127,7 @@
 
         schema.fields.push(submitButton)
 
-        return schema;
+        return schema
       },
 
 
