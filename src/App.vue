@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-if="loaded">
+  <div id="jpjd-formwidget--app" v-if="loaded">
     <div v-if="submitted">Successfully submitted!</div>
     <vue-form-generator v-else="!submitted" :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
   </div>
@@ -102,11 +102,10 @@
 </script>
 
 <style>
-#app {
+#jpjd-formwidget--app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
