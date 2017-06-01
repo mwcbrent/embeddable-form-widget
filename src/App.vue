@@ -48,6 +48,7 @@
        */
       schemaUrl() {
         const url = this.config.schemaUrl;
+
         if (!this.config.useAuthHeader) {
           return `${url}?api_key=${this.config.apiKey}`
         }
@@ -75,7 +76,7 @@
         }
 
         // load the schema
-        fetch(this.config.schemaUrl, options)
+        fetch(this.schemaUrl, options)
           .then((response) => response.json())
           .then((json) => {
 
