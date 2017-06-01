@@ -26,7 +26,6 @@
           "inputType": "email",
           "label": "E-mail",
           "model": "email",
-          "placeholder": "Email",
           "required": true,
           "validator": "email"
         },
