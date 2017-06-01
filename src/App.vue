@@ -20,8 +20,6 @@
     data() {
 
       return {
-        apiKey: null,
-        useAuthHeader: null,
         config: null,
         model: null,
         schema: null,
@@ -34,8 +32,8 @@
 
     created() {
 
-      // process any config passed along with the snippet
-      this.processConfig();
+      // get window config
+      this.config = window[widgetName];
 
       // fetch the form schema
       this.fetchSchema();
@@ -49,9 +47,9 @@
        * @return {[type]} [description]
        */
       schemaUrl() {
-        const url = window[widgetName].schemaUrl;
-        if (!this.useAuthHeader) {
-          return `${url}?api_key=${this.apiKey}`
+        const url = this.config.schemaUrl;
+        if (!this.config.useAuthHeader) {
+          return `${url}?api_key=${this.config.apiKey}`
         }
         return url
       }
@@ -67,22 +65,22 @@
        */
       fetchSchema() {
 
-        // use auth header if this option is set
         const options = {}
 
-        if (this.useAuthHeader) {
+        // use auth header if this option is set
+        if (this.config.useAuthHeader) {
           options.headers = {
-            authorization: this.apiKey
+            authorization: this.config.apiKey
           }
         }
 
         // load the schema
-        fetch(this.schemaUrl, options)
+        fetch(this.config.schemaUrl, options)
           .then((response) => response.json())
           .then((json) => {
 
             // set config
-            this.config = json.config
+            this.config.postUrl = json.config.postUrl
 
             // assign the schema and model
             this.model = json.model
@@ -92,23 +90,9 @@
             // indicate that the schema has been loaded
             this.loaded = true
           })
-          .catch((ex) => {
-            // TODO: error handling
+          .catch((err) => {
+            // TODO: add error handling
           })
-      },
-
-
-      /**
-       * Processes any configuration attached to the window.
-       * @return {[type]} [description]
-       */
-      processConfig() {
-
-        // grab the api key
-        this.apiKey = window[widgetName].apiKey
-
-        // determine whether to use auth header or not
-        this.useAuthHeader = window[widgetName].useAuthHeader
       },
 
 
@@ -151,14 +135,16 @@
 
         // base request options
         const options = {
+          headers: {
+            'content-type': 'application/json'
+          },
           method: 'POST',
           body: JSON.stringify(data)
         }
 
-        if (this.useAuthHeader) {
-          options.headers = {
-            authorization: this.apiKey
-          }
+        // use auth header if this option is set
+        if (this.config.useAuthHeader) {
+          options.headers.authorization = this.config.apiKey
         }
 
         // post that bitch
@@ -168,7 +154,9 @@
             if (response.status === 201) {
               this.submitted = true
             }
-
+          })
+          .catch((err) => {
+            // TODO: add error handling
           })
       }
     }
