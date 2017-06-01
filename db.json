@@ -1,5 +1,8 @@
 {
   "forms": {
+    "config": {
+      "postUrl": ""
+    },
     "model": {
       "firstName": null,
       "lastName": null,
@@ -37,10 +40,6 @@
           "type": "input",
           "inputType": "hidden",
           "model": "apiKey"
-        },
-        {
-          "type": "submit",
-          "validateBeforeSubmit": true
         }
       ]
     },
