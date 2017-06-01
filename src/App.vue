@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loaded">
+  <div id="jpjd-formwidget--app" v-if="loaded">
     <div v-if="submitted">Successfully submitted!</div>
     <vue-form-generator v-else="!submitted" :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
   </div>
@@ -37,7 +37,7 @@
 
       // set api key on model if not using auth header
       if (!this.config.useAuthHeader) {
-        this.model.apiKey = this.config.apiKey
+        this.model.api_token = this.config.apiKey
       }
 
       // fetch the form schema
@@ -55,7 +55,7 @@
         const url = this.config.schemaUrl
 
         if (!this.config.useAuthHeader) {
-          return `${url}?api_key=${this.config.apiKey}`
+          return `${url}?api_token=${this.config.apiKey}`
         }
         return url
       }
@@ -86,7 +86,7 @@
           .then((json) => {
 
             // set config
-            this.config.postUrl = json.config.postUrl
+            this.config.postUrl = (json.config && json.config.postUrl)
 
             // assign the schema and form options
             this.schema = this.processSchema(json.schema)
@@ -97,6 +97,8 @@
           })
           .catch((err) => {
             // TODO: add error handling
+            console.log("[fetch] error")
+            console.log(err)
           })
       },
 
@@ -107,7 +109,6 @@
        * @return {[type]}        [description]
        */
       processSchema(schema) {
-
         // map validators to real functions
         schema.fields.map((field) => {
 
@@ -167,6 +168,3 @@
     }
   }
 </script>
-
-<style scoped>
-</style>
