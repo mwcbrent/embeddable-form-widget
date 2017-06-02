@@ -7,14 +7,16 @@
     <vue-form-generator v-else-if="!loading && !submitted" :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
 
     <!--  form submitted successfully -->
-    <div v-else-if="submitted">
-      Thanks!
+    <div class="confirmation" v-else-if="submitted">
+      <h2>Success!</h2>
+      <Checkmark />
     </div>
   </div>
 </template>
 
 <script>
   import Vue from 'vue'
+  import Checkmark from './components/Checkmark';
   import Spinner from './components/Spinner';
   import VueFormGenerator from 'vue-form-generator/dist/vfg-core.js'
   import 'vue-form-generator/dist/vfg-core.css'
@@ -25,6 +27,7 @@
     name: 'app',
 
     components: {
+      Checkmark,
       Spinner,
       'vue-form-generator': VueFormGenerator.component
     },
@@ -192,14 +195,18 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   #jpjd-formwidget--app {
     display: flex;
     justify-content: center;
     min-height: 300px;
-  }
 
-  fieldset {
-    border: 0;
+    .confirmation {
+      margin: auto;
+    }
+
+    fieldset {
+      border: 0;
+    }
   }
 </style>
