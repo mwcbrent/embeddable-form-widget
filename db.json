@@ -26,7 +26,6 @@
           "inputType": "email",
           "label": "E-mail",
           "model": "email",
-          "placeholder": "Email",
           "required": true,
           "validator": "email"
         },
@@ -42,9 +41,9 @@
     }
   },
   "form": {
-    "firstName": "J",
+    "api_token": "5b8cf3a4-b0f0-13e9-3737-d5a159268ae6",
+    "firstName": "j",
     "lastName": "d",
-    "email": "j@d.com",
-    "apiKey": "5b8cf3a4-b0f0-13e9-3737-d5a159268ae6"
+    "email": "j@d.com"
   }
 }
