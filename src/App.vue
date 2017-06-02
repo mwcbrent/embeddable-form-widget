@@ -16,8 +16,9 @@
 
 <script>
   import Vue from 'vue'
-  import Checkmark from './components/Checkmark';
-  import Spinner from './components/Spinner';
+  import Checkmark from './components/Checkmark'
+  import Spinner from './components/Spinner'
+  import 'whatwg-fetch'
   import VueFormGenerator from 'vue-form-generator/dist/vfg-core.js'
   import 'vue-form-generator/dist/vfg-core.css'
 
@@ -115,7 +116,7 @@
           })
           .then(() => {
             // disable loading spinner
-            this.loading = false;
+            this.loading = false
           })
       },
 
@@ -140,6 +141,7 @@
         // add submit button to the schema
         const submitButton = {
           type: 'submit',
+          buttonText: 'Submit',
           validateBeforeSubmit: true,
           onSubmit: this.submit
         }
@@ -158,7 +160,7 @@
       submit (data) {
 
         // trigger loading spinner
-        this.loading = true;
+        this.loading = true
 
         // base request options
         const options = {
@@ -188,7 +190,7 @@
           })
           .then(() => {
             // disable loading spinner
-            this.loading = false;
+            this.loading = false
           })
       }
     }
