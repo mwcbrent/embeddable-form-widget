@@ -22,12 +22,7 @@
   import Checkmark from './components/Checkmark'
   import Alert from './components/Alert'
   import Spinner from './components/Spinner'
-<<<<<<< HEAD
-  import 'whatwg-fetch'
   import VueFormGenerator from "vue-form-generator";
-=======
-  import VueFormGenerator from 'vue-form-generator/dist/vfg-core.js'
->>>>>>> feature/error-messaging
   import 'vue-form-generator/dist/vfg-core.css'
   import 'whatwg-fetch'
 
