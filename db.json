@@ -3,6 +3,16 @@
     "config": {
       "postUrl": "http://localhost:3000/form"
     },
+    "model": {
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "street": null,
+      "street2": null,
+      "city": null,
+      "state": null,
+      "zipcode": null
+    },
     "schema": {
       "fields": [
         {
@@ -30,6 +40,43 @@
           "validator": "email"
         },
         {
+          "type": "googleAddress",
+          "label": "Street",
+          "model": "street",
+          "placeholder": "",
+          "required": true,
+          "validator": "string"
+        },
+        {
+          "type": "input",
+          "inputType": "text",
+          "label": "Apt/Unit/Suite #",
+          "model": "street2"
+        },
+        {
+          "type": "input",
+          "inputType": "text",
+          "label": "City",
+          "model": "city",
+          "required": true,
+          "validator": "string"
+        },
+        {
+          "type": "input",
+          "inputType": "text",
+          "label": "State",
+          "model": "state",
+          "required": true,
+          "validator": "string"
+        },
+        {
+          "type": "input",
+          "inputType": "number",
+          "label": "Zipcode",
+          "model": "zipcode",
+          "required": true
+        },
+        {
           "type": "input",
           "inputType": "hidden",
           "model": "apiKey"
@@ -41,9 +88,14 @@
     }
   },
   "form": {
-    "api_token": "5b8cf3a4-b0f0-13e9-3737-d5a159268ae6",
     "firstName": "j",
     "lastName": "d",
-    "email": "j@d.com"
+    "email": "j@d.com",
+    "street": "1234 S Wadsworth Blvd",
+    "street2": null,
+    "city": "Lakewood",
+    "state": "CO",
+    "zipcode": "80232",
+    "country": "United States"
   }
 }
