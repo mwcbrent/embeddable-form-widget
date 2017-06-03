@@ -1,5 +1,8 @@
 <template>
   <div id="jpjd-formwidget--app">
+    <!--  display error if anything goes wrong -->
+    <alert v-if="error" :msg="error" />
+
     <!--  display spinner if loading schema or submitting form -->
     <spinner v-if="loading" />
 
@@ -17,10 +20,16 @@
 <script>
   import Vue from 'vue'
   import Checkmark from './components/Checkmark'
+  import Alert from './components/Alert'
   import Spinner from './components/Spinner'
+<<<<<<< HEAD
   import 'whatwg-fetch'
   import VueFormGenerator from "vue-form-generator";
+=======
+  import VueFormGenerator from 'vue-form-generator/dist/vfg-core.js'
+>>>>>>> feature/error-messaging
   import 'vue-form-generator/dist/vfg-core.css'
+  import 'whatwg-fetch'
 
   const widgetName = 'formWidget'
 
@@ -28,6 +37,7 @@
     name: 'app',
 
     components: {
+      Alert,
       Checkmark,
       Spinner,
       'vue-form-generator': VueFormGenerator.component
@@ -41,7 +51,8 @@
         schema: null,
         formOptions: null,
         loading: true,
-        submitted: false
+        submitted: false,
+        error: null
       }
     },
 
@@ -121,11 +132,12 @@
             this.model = json.model
             this.schema = this.processSchema(json.schema)
             this.formOptions = json.formOptions
+
+            // reset error state
+            this.error = null
           })
           .catch((err) => {
-            // TODO: add error handling
-            console.log("[fetch] error")
-            console.log(err)
+            this.error = 'Sorry! It looks like there was an issue loading the form. Try refreshing the page.'
           })
           .then(() => {
             // disable loading spinner
@@ -226,11 +238,14 @@
 
             if (response.status === 201) {
               this.submitted = true
+
+              // reset error state
+              this.error = null
             }
 
           })
           .catch((err) => {
-            // TODO: add error handling
+            this.error = 'Sorry! It looks like there was an issue submitting the form. Please try again in a few minutes.'
           })
           .then(() => {
             // disable loading spinner
@@ -244,6 +259,7 @@
 <style lang="scss">
   #jpjd-formwidget--app {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     min-height: 300px;
 
