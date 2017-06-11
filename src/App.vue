@@ -227,7 +227,7 @@
           options.headers.authorization = this.config.apiKey
         }
 
-        // post that bitch
+        // post the form
         fetch(this.config.postUrl, options)
           .then((response) => {
 
@@ -262,8 +262,32 @@
       margin: auto;
     }
 
-    fieldset {
+    fieldset{
       border: 0;
+    }
+
+    @media only screen and (min-device-width: 768px){
+
+        fieldset {
+          .form-group.half-width {
+            width: 50%;
+          }
+          .half-width + .half-width {
+            &:not(.first) {
+              padding-left: 0.5rem;
+            }
+          }
+
+          .form-group.third-width {
+            width: 33%;
+          }
+          .third-width + .third-width {
+            &:not(.first) {
+              padding-left: 0.5rem;
+            }
+          }
+        }
+
     }
   }
 </style>
