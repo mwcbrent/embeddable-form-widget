@@ -18,6 +18,7 @@
 </template>
 
 <script>
+  import Promise from 'promise-polyfill';
   import Vue from 'vue'
   import Checkmark from './components/Checkmark'
   import Alert from './components/Alert'
@@ -25,6 +26,11 @@
   import VueFormGenerator from "vue-form-generator";
   import 'vue-form-generator/dist/vfg-core.css'
   import 'whatwg-fetch'
+
+  // polyfill promise for older browsers
+  if (!window.Promise) {
+    window.Promise = Promise;
+  }
 
   const widgetName = 'formWidget'
 
