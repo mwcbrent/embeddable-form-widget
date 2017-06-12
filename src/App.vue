@@ -266,6 +266,10 @@
       border: 0;
     }
 
+    select {
+      height: 34px;
+    }
+
     @media only screen and (min-device-width: 768px){
 
         fieldset {
