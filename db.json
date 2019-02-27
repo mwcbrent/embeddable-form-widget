@@ -4,8 +4,7 @@
       "postUrl": "http://localhost:3000/form"
     },
     "schema": {
-      "fields": [
-        {
+      "fields": [{
           "type": "input",
           "inputType": "text",
           "label": "First Name",
@@ -28,6 +27,14 @@
           "model": "email",
           "required": true,
           "validator": "email"
+        },
+        {
+          "type": "input",
+          "inputType": "date",
+          "label": "Date",
+          "model": "date",
+          "required": true,
+          "validator": "date"
         },
         {
           "type": "input",

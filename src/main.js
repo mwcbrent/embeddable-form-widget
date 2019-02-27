@@ -9,5 +9,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '.embedded-form-widget',
   template: '<App/>',
-  components: { App }
+  components: {
+    App
+  }
 })
